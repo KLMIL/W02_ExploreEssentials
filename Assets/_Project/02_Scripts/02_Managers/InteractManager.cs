@@ -12,10 +12,19 @@ public class InteractManager : MonoBehaviour
     //[SerializeField] private List<GameObject> InteractablePrefabs;
     [SerializeField] private string[] interactPrefabName = new string[40];
     [SerializeField] private GameObject[] interactPrefabs = new GameObject[40];
+    [SerializeField] private InteractType[] interactPrefabTypes = new InteractType[40];
+
+    [SerializeField] private GameObject dummyPrefab;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+
     }
 
 
@@ -32,11 +41,12 @@ public class InteractManager : MonoBehaviour
 
         if (targetPrefab == null)
         {
-            Debug.Log("Find prefab error");
             return null;
         }
 
-        return Instantiate(targetPrefab, pos, Quaternion.identity, parent);
+        GameObject madePrefab = Instantiate(targetPrefab, pos, Quaternion.identity, parent);
+
+        return madePrefab;
     }
 
 
@@ -65,18 +75,47 @@ public class InteractManager : MonoBehaviour
         return Instantiate(interactPrefabs[(int)type + 10], pos, Quaternion.identity);
     }
 
-    public GameObject MakeNewStackDummy(string name, Vector3 pos, int amount, Transform parent = null)
+    public void MakeNewStackDummy(string itemName, Vector3 pos, int amount) //, Transform parent = null)
+    {
+        GameObject dummy = Instantiate(dummyPrefab, pos, Quaternion.identity); //, parent);
+
+
+        // 임시로 Name으로 Interact Item을 만들어서 넣을 수 있도록 했음. 추후 변경요망
+        InteractType interactType = InteractType.NONE;
+        for (int i = 0; i < interactPrefabName.Length; i++)
+        {
+            if (interactPrefabName[i] == itemName)
+            {
+                interactType = interactPrefabTypes[i];
+            }
+        }
+
+        InteractItem item;
+        item.itemName = itemName;
+        item.interactType = interactType;
+
+        dummy.GetComponent<StackDummy>().SetInfo(item);
+
+        for (int i = 0; i < interactPrefabName.Length; i++)
+        {
+            if (interactPrefabName[i] == item.itemName)
+            {
+                dummy.GetComponent<StackDummy>().AddToDummy(amount);
+            }
+        }
+
+        //return dummy;
+    }
+
+    public string GetFrictionNameByEnvironmentName(string name)
     {
         for (int i = 0; i < interactPrefabName.Length; i++)
         {
             if (interactPrefabName[i] == name)
             {
-
-                for (int j = 0; j < amount; j++)
-                {
-
-                }
+                return interactPrefabName[i + 10];
             }
         }
+        return null;
     }
 }

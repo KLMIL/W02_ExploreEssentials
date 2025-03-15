@@ -5,5 +5,5 @@ using E_DataTypes;
 public struct InteractItem
 {
     public string itemName;
-    public E_DataTypes.InteractType interactType;
+    public InteractType interactType;
 }
