@@ -23,9 +23,13 @@ namespace E_DataTypes
         /// </summary>
         FRICTION = 20,
         /// <summary>
-        /// 20 ~ 29: Processed item object made by frictions -> Can grabable
+        /// 30 ~ 39: Processed item object made by frictions -> Can grabable
         /// </summary>
-        ITEM = 30
+        ITEM = 30,
+        /// <summary>
+        /// 40 ~ 59: Item Dummis
+        /// </summary>
+        DUMMY = 40
     }
 
     public enum InteractTypeCategory
@@ -34,7 +38,8 @@ namespace E_DataTypes
         WORKBENCH = 1,
         ENVIRONMENT = 10,
         FRICTION = 20,
-        ITEM = 30
+        ITEM = 30,
+        DUMMY = 40
     }
 }
 
@@ -59,6 +64,11 @@ public static class InteractTypeExtensions
         {
             return InteractTypeCategory.ITEM;
         }
+        if (40 <= (int)itemType && (int)itemType < 60)
+        {
+            return InteractTypeCategory.DUMMY;
+        }
+
         return InteractTypeCategory.NONE;
     }
 }

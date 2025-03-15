@@ -1,7 +1,7 @@
 using E_DataTypes;
 using UnityEngine;
 
-public class StackableItem : MonoBehaviour
+public class DEP_StackableItem : MonoBehaviour
 {
     [SerializeField] private InteractItem item;
     [SerializeField] private int capacity = 20;
