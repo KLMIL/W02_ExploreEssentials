@@ -9,37 +9,45 @@ namespace E_DataTypes
         /// <summary>
         /// N/A Object
         /// </summary>
-        NONE= 0,
+        None = 0,
         /// <summary>
         /// 1 ~ 10: Workbench Objects -> Insert correct items
         /// </summary>
-        WORKBENCH = 1,
+        Workbench = 1,
         /// <summary>
         /// 10 ~ 19: Environment object -> Make to item
         /// </summary>
-        ENVIRONMENT = 10,
+        Environment = 10,
+        Coal = 11,
+        Gold = 12,
+        Iron = 13,
+        Stone = 14,
         /// <summary>
         /// 20 ~ 29: First processed object -> Can grabable
         /// </summary>
-        FRICTION = 20,
+        Friction = 20,
+        Coalbar = 21,
+        Goldbar = 22,
+        Ironbar = 23,
+        Stonebar = 24,
         /// <summary>
         /// 30 ~ 39: Processed item object made by frictions -> Can grabable
         /// </summary>
-        ITEM = 30,
+        Item = 30,
         /// <summary>
         /// 40 ~ 59: Item Dummis
         /// </summary>
-        DUMMY = 40
+        Dummy = 40
     }
 
     public enum InteractTypeCategory
     {
-        NONE = 0,
-        WORKBENCH = 1,
-        ENVIRONMENT = 10,
-        FRICTION = 20,
-        ITEM = 30,
-        DUMMY = 40
+        None = 0,
+        Workbench = 1,
+        Environment = 10,
+        Friction = 20,
+        Item = 30,
+        Dummy = 40
     }
 }
 
@@ -50,25 +58,25 @@ public static class InteractTypeExtensions
     {
         if (0 <= (int)itemType && (int)itemType < 10)
         {
-            return InteractTypeCategory.WORKBENCH;
+            return InteractTypeCategory.Workbench;
         }
         if (10 <= (int)itemType && (int)itemType < 20)
         {
-            return InteractTypeCategory.ENVIRONMENT;
+            return InteractTypeCategory.Environment;
         }
         if (20 <= (int)itemType && (int)itemType < 30)
         {
-            return InteractTypeCategory.FRICTION;
+            return InteractTypeCategory.Friction;
         }
         if (30 <= (int)itemType && (int)itemType < 40)
         {
-            return InteractTypeCategory.ITEM;
+            return InteractTypeCategory.Item;
         }
         if (40 <= (int)itemType && (int)itemType < 60)
         {
-            return InteractTypeCategory.DUMMY;
+            return InteractTypeCategory.Dummy;
         }
 
-        return InteractTypeCategory.NONE;
+        return InteractTypeCategory.None;
     }
 }

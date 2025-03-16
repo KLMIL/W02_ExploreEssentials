@@ -47,8 +47,8 @@ public class DEP_StackableItem : MonoBehaviour
     /// </summary>
     public bool IsHandable()
     {
-        return InteractTypeExtensions.GetCategory(item.interactType) == InteractTypeCategory.FRICTION
-                || InteractTypeExtensions.GetCategory(item.interactType) == InteractTypeCategory.ITEM;
+        return InteractTypeExtensions.GetCategory(item.interactType) == InteractTypeCategory.Friction
+                || InteractTypeExtensions.GetCategory(item.interactType) == InteractTypeCategory.Item;
     }
 
 

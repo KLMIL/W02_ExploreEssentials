@@ -76,7 +76,7 @@ public class StackDummy : MonoBehaviour
         if (currAmount == 0)
         {
             item.itemName = "None";
-            item.interactType = InteractType.NONE;
+            item.interactType = InteractType.None;
         }
     
 

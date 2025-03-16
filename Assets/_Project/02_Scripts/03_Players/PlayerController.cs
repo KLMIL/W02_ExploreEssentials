@@ -155,11 +155,11 @@ public class PlayerController : MonoBehaviour
                 InteractTypeCategory category = InteractTypeExtensions.GetCategory(interactType);
                 switch (category)
                 {
-                    case InteractTypeCategory.WORKBENCH: // 2-1-1. WORKBENCH
+                    case InteractTypeCategory.Workbench: // 2-1-1. WORKBENCH
                         Debug.Log("Case 2-1-1");
                         /* Do Nothing */
                         break;
-                    case InteractTypeCategory.ENVIRONMENT: // 2-1-2. ENVIRONMENT
+                    case InteractTypeCategory.Environment: // 2-1-2. ENVIRONMENT
                         Debug.Log("Case 2-1-2");
                         // 상호작용 -> 채집
                         string frictionName = interactManager.GetFrictionNameByEnvironmentName(interactItem.itemName);
@@ -171,8 +171,8 @@ public class PlayerController : MonoBehaviour
                         FindClosetObject();
 
                         break;
-                    case InteractTypeCategory.FRICTION: // 2-1-3. FRICTION
-                    case InteractTypeCategory.ITEM: // 2-1-4. ITEM
+                    case InteractTypeCategory.Friction: // 2-1-3. FRICTION
+                    case InteractTypeCategory.Item: // 2-1-4. ITEM
                         Debug.Log("Case 2-1-3,4");
                         // 상호작용 -> 가능한 수만큼 줍기
                         StackDummy targetDummy = closestObject.GetComponent<StackDummy>();
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
             {
                 InteractTypeCategory category = InteractTypeExtensions.GetCategory(interactType);
                 // 2-2-0. 상호작용 물체인 경우
-                if (category == InteractTypeCategory.WORKBENCH)
+                if (category == InteractTypeCategory.Workbench)
                 {
                     // 상호작용 물체가 접근 가능한 상태라면(자리가 있다면) 물건 넣기
                 }
@@ -292,8 +292,8 @@ public class PlayerController : MonoBehaviour
                         //    Debug.Log("Case 2-2-2");
                         //    /* Do Nothing */
                         //    break;
-                        case InteractTypeCategory.FRICTION: // 2-2-3. FRICTION
-                        case InteractTypeCategory.ITEM: // 2-2-4. ITEM
+                        case InteractTypeCategory.Friction: // 2-2-3. FRICTION
+                        case InteractTypeCategory.Item: // 2-2-4. ITEM
                             Debug.Log("Case 2-2-3,4");
                             InteractItem targetItem = closestObject.GetComponent<StackDummy>().GetItem();
                             InteractItem playerItem = playerDummy.GetComponent<StackDummy>().GetItem();

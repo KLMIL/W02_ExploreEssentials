@@ -1,5 +1,6 @@
 using E_DataTypes;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -81,14 +82,17 @@ public class InteractManager : MonoBehaviour
 
 
         // 임시로 Name으로 Interact Item을 만들어서 넣을 수 있도록 했음. 추후 변경요망
-        InteractType interactType = InteractType.NONE;
-        for (int i = 0; i < interactPrefabName.Length; i++)
-        {
-            if (interactPrefabName[i] == itemName)
-            {
-                interactType = interactPrefabTypes[i];
-            }
-        }
+        InteractType interactType = InteractType.None;
+        //for (int i = 0; i < interactPrefabName.Length; i++)
+        //{
+        //    if (interactPrefabName[i] == itemName)
+        //    {
+        //        interactType = interactPrefabTypes[i];
+        //        
+        //    }
+        //}
+
+        Enum.TryParse<InteractType>(itemName, true, out interactType);
 
         InteractItem item;
         item.itemName = itemName;
