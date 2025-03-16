@@ -206,7 +206,81 @@ public class PlayerController : MonoBehaviour
                 // 2-2-1. 손에 물건이 꽉 차 있다면
                 if (playerDummy.GetComponent<StackDummy>().GetItemAmount() == playerDummy.GetComponent<StackDummy>().GetCapacity())
                 {
-                    // 일단 아무 행동도 하지 않지만, 원래는 버릴 수 있어야 한다. 
+                    // 해당 더미에 물건을 내려놓는다
+                    Debug.Log("Case 2-2-1-1");
+                    InteractItem targetItem = closestObject.GetComponent<StackDummy>().GetItem();
+                    InteractItem playerItem = playerDummy.GetComponent<StackDummy>().GetItem();
+                    if (targetItem.interactType == playerItem.interactType) // 같은 아이템인 경우
+                    {
+                        Debug.Log("Case 2-2-1-1-1");
+                        int targetAmount = playerDummy.GetComponent<StackDummy>().GetItemAmount();
+                        int added = closestObject.GetComponent<StackDummy>().AddToDummy(targetAmount);
+                        playerDummy.GetComponent<StackDummy>().RemoveFromDummyPlayer(added);
+
+                        //interacts.Remove(closestObject);
+                        //closestObject = lastHighlightObject = null;
+                        RemoveHighlight(closestObject);
+                        ApplyHighlight(closestObject);
+                        FindClosetObject();
+                    }
+                    else // 다른 아이템인 경우
+                    {
+                        Debug.Log("Case 2-2-1-1-2");
+                        // 가장 가까운 빈 공간에 내려놓는다. 
+
+                        Vector3 playerPos = transform.position;
+                        Vector3 nearestPos = Vector3.zero;
+                        float minDistance = Mathf.Infinity;
+
+                        // 플레이어 주위 좌표 확인
+                        for (int x = -1; x <= 1; x++)
+                        {
+                            for (int z = -1; z <= 1; z++)
+                            {
+                                if (x == 0 && z == 0) continue;
+
+                                Vector3 candidatePos = new Vector3(
+                                        Mathf.Round(playerPos.x) + x,
+                                        playerPos.y,
+                                        Mathf.Round(playerPos.z) + z);
+
+                                bool isValid = true;
+
+                                Collider[] colliders = Physics.OverlapSphere(candidatePos, 0.1f);
+                                foreach (var collider in colliders)
+                                {
+                                    if (collider.gameObject != gameObject && collider.GetComponent<StackDummy>() != null)
+                                    {
+                                        isValid = false;
+                                        break;
+                                    }
+                                }
+
+                                if (isValid)
+                                {
+                                    float distance = Vector3.Distance(playerPos, candidatePos);
+                                    if (distance < minDistance)
+                                    {
+                                        minDistance = distance;
+                                        nearestPos = candidatePos;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (nearestPos != Vector3.zero)
+                        {
+                            interactManager.MakeNewStackDummy(
+                                    playerDummy.GetComponent<StackDummy>().GetItem().itemName,
+                                    nearestPos,
+                                    playerDummy.GetComponent<StackDummy>().GetItemAmount()
+                                    );
+                            playerDummy.GetComponent<StackDummy>().RemoveFromDummyPlayer(
+                                    playerDummy.GetComponent<StackDummy>().GetItemAmount()
+                                    );
+                            FindClosetObject();
+                        }
+                    }
                 }
                 else // 2-2-2. 물건을 들 수 있다면
                 {
