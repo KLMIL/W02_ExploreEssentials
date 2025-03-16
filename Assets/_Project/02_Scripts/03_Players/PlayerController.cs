@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using E_DataTypes;
-using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,19 +19,12 @@ public class PlayerController : MonoBehaviour
 
     /* Children Object */
     [SerializeField] private GameObject directionArrow; // 방향 확인을 위한 화살표 오브젝트
-    //[SerializeField] private GameObject stackItemPoint; // 획득한 아이템이 쌓일 위치 오브젝트
     [SerializeField] private GameObject playerDummy;
 
     /* Interation Field */
     private List<GameObject> interacts = new List<GameObject>();
     [SerializeField] private GameObject closestObject = null;
     [SerializeField] private GameObject lastHighlightObject = null;
-
-    /* Inventory Field */
-    //[SerializeField] private InteractItem currentItem;
-    //private GameObject[] itemPrefab = new GameObject[3];
-    //int capacity = 3;
-    //int currentAmount = 0;
 
 
     /* Other Objects */
@@ -412,60 +404,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-
-    /************************************* 
-     * Inventory Functions 
-     *************************************/
-    //private void PickUpItemEvent()
-    //{
-    //    // 가까운 물체가 없거나, 손에 들 수 없다면 return
-    //    if (closestObject == null || !closestObject.GetComponent<StackableItem>().IsHandable())
-    //    {
-    //        return;
-    //    }
-
-    //    // 상호작용 중인 아이템 확인
-    //    StackableItem targetItem = closestObject.gameObject.GetComponent<StackableItem>();
-
-    //    if (currentAmount == 0) // 손에 든 게 없을 때
-    //    {
-    //        currentItem = targetItem.GetItem();
-    //        PickUpItem(targetItem);
-    //    }
-    //    else // 손에 아이템을 들고 있을 때
-    //    {
-    //        // 같은 아이템이라면
-    //        if (targetItem.GetItemName() == currentItem.itemName)
-    //        {
-    //            PickUpItem(targetItem);
-    //        }
-    //    } 
-    //}
-
-    //private void PickUpItem(StackableItem targetItem)
-    //{
-    //    int prevAmount = currentAmount;
-
-    //    int pickAmount = targetItem.RemoveItem(capacity - currentAmount);
-    //    currentAmount += pickAmount;
-
-    //    if (pickAmount != 0)
-    //    {
-    //        MakeItemOnPlayerHand(targetItem, prevAmount, currentAmount);
-    //    }
-    //}
-
-    // 플레이어 아이템 핸들 위치에 프리펩 생성
-    //private void MakeItemOnPlayerHand(StackableItem targetItem, int startIndex, int endIndex)
-    //{
-    //    interactManager.MakeChildPrefabByName(
-    //            targetItem.GetItemName(),
-    //            stackItemPoint.transform.position,
-    //            startIndex,
-    //            endIndex,
-    //            itemPrefab,
-    //            stackItemPoint.transform
-    //        );
-    //}
 }
