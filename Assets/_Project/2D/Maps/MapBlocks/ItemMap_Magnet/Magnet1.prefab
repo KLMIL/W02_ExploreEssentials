@@ -53,9 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d14511b0aec4c4b982a1045a7f4f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: 0000000005000000
   numCoin: 1
-  numBullet: 10
 --- !u!1 &7112179303481369260
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.55
+      value: 3.5499752
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalScale.y
@@ -114,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.75
+      value: -8.25
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalPosition.y

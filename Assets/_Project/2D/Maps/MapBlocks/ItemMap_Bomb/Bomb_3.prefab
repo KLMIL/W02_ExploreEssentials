@@ -19698,8 +19698,8 @@ Transform:
   m_GameObject: {fileID: 1807916998135612833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.75, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 10, z: 0.55}
+  m_LocalPosition: {x: -8.25, y: 0, z: 0}
+  m_LocalScale: {x: 3.5499752, y: 10, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7160831929620760499}
@@ -28589,9 +28589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d14511b0aec4c4b982a1045a7f4f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: 6300000000000000
   numCoin: 3
-  numBullet: 99
 --- !u!1 &2894381812776439036
 GameObject:
   m_ObjectHideFlags: 0
@@ -43596,9 +43594,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342f79d06e2433942ad59755ac1b76cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 8600695454820131953, guid: e28da6704c258f149960133c14888cfb, type: 3}
+  BulletPrefabs:
+  - {fileID: 8600695454820131953, guid: e28da6704c258f149960133c14888cfb, type: 3}
+  - {fileID: 8600695454820131953, guid: d425567d1ea228f41a06a5fcd2bc3dc8, type: 3}
+  - {fileID: 8600695454820131953, guid: 9f634d4baf5961043973db08315bcfa2, type: 3}
   isItemSelected: 0
   itemParticles: []
+  selectedItem: -1
   bulletPowerMax: 0.25
   lineLengthMax: 1
   dampingAmount: 0.98

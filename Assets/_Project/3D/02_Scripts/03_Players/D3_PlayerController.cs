@@ -6,6 +6,7 @@ using E_DataTypes;
 using Unity.VisualScripting;
 using System.Collections;
 using NUnit.Framework.Constraints;
+using TMPro;
 
 public class D3_PlayerController : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class D3_PlayerController : MonoBehaviour
 
     /* Other Objects */
     D3_InteractManager interactManager;
-
+    [SerializeField] TextMeshProUGUI miningText;
 
 
 
@@ -379,6 +380,7 @@ public class D3_PlayerController : MonoBehaviour
 
     private IEnumerator MiningCoroutine(GameObject target)
     {
+        miningText.text = "Mining...";
         isMining = true;
         yield return new WaitForSeconds(1f);
 
@@ -393,6 +395,7 @@ public class D3_PlayerController : MonoBehaviour
             FindClosetObject();
         }
 
+        miningText.text = "";
         isMining = false;
     }
 

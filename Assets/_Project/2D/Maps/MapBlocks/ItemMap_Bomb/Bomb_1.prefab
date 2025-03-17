@@ -88,9 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d14511b0aec4c4b982a1045a7f4f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: 0200000000000000
   numCoin: 1
-  numBullet: 0
 --- !u!1001 &2302653832642475740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219571020228967608, guid: 31ffb41d82f43504890f1eeebffbfec1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.951481
+      value: 1.3674273
       objectReference: {fileID: 0}
     - target: {fileID: 5219571020228967608, guid: 31ffb41d82f43504890f1eeebffbfec1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -455,7 +453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.55
+      value: 3.5499752
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalScale.y
@@ -467,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.75
+      value: -8.25
       objectReference: {fileID: 0}
     - target: {fileID: 3631041691892528792, guid: c0bd396b8b76fbb48b7a8334ce798776, type: 3}
       propertyPath: m_LocalPosition.y

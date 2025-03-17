@@ -430,6 +430,7 @@ MonoBehaviour:
   playerDummy: {fileID: 8329223193310249367}
   closestObject: {fileID: 0}
   lastHighlightObject: {fileID: 0}
+  miningText: {fileID: 0}
 --- !u!1 &5984939454317658966
 GameObject:
   m_ObjectHideFlags: 0
