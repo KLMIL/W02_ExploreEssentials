@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - Interactable
+  - Wall
+  - Coin
+  - BackGround
+  - Bullet
+  - Explosion
+  - WorkBench
+  - Item
   layers:
   - Default
   - TransparentFX
