@@ -206,9 +206,9 @@ public class D2_GameManager : MonoBehaviour
         //textCoin.text = $"Rest Coin\n X {currentCoin}";
         //textItems[0].text = $"{D2_ItemManager.Instance.itemStr[0]} X {currentItems[0]}";
         //textItems[1].text = $"{D2_ItemManager.Instance.itemStr[1]} X {currentItems[1]}";
-        Debug.Log("Text Init");
+        //Debug.Log("Text Init");
 
-        Debug.Log($"Is Null text? {textItems[0].text == null}");
+        //Debug.Log($"Is Null text? {textItems[0].text == null}");
 
         textItems[0].text = $"Normal \n Bullet \n X {currentItems[0]}";
         textItems[1].text = $"Bomb \n Bullet \n X {currentItems[1]}";

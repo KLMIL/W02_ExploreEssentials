@@ -10,8 +10,8 @@ public class D3_GameManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> orePrefabs = new List<GameObject>();
 
-    int rangeX = 12;
-    int rangeZ = 14;
+    int rangeX = 14;
+    int rangeZ = 12;
     int randomAmount = 5;
     //InteractType[,] objectMap = new InteractType[25, 13];
     //InteractType[,] objectMap;

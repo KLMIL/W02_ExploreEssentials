@@ -143,11 +143,13 @@ public class D3_PlayerController : MonoBehaviour
 
             if (interactType == InteractType.OreGenerator) // 2-0. 제너레이터의 경우
             {
+                Debug.Log("Generate Ores");
                 closestObject.GetComponent<D3_OreGenerator>().MakeOre();
             }
             else if (interactType == InteractType.GoToShootingPang)
             {
-
+                Debug.Log("Switch Dimention");
+                closestObject.GetComponent<D3_DimentionSwitch>().Switch();
             }
             else
             {
