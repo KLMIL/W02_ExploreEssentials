@@ -4,6 +4,8 @@ using UnityEngine;
 
 using E_DataTypes;
 using Unity.VisualScripting;
+using System.Collections;
+using NUnit.Framework.Constraints;
 
 public class D3_PlayerController : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class D3_PlayerController : MonoBehaviour
     private float moveX;
     private float moveZ;
     private Quaternion lastRotation;
+
+    private bool isMining = false;
 
     /* Children Object */
     [SerializeField] private GameObject directionArrow; // 방향 확인을 위한 화살표 오브젝트
@@ -51,11 +55,15 @@ public class D3_PlayerController : MonoBehaviour
 
     private void Update()
     {
-        InputMove();
-        InputRotate();
-        InputKeys();
+        if (!isMining)
+        {
+            InputMove();
+            InputRotate();
+            InputKeys();
 
-        FindClosetObject();
+            FindClosetObject();
+        }
+        
     }
 
 
@@ -186,13 +194,10 @@ public class D3_PlayerController : MonoBehaviour
                         case InteractTypeCategory.Environment: // 2-1-2. ENVIRONMENT
                             Debug.Log("Case 2-1-2");
                             // 상호작용 -> 채집
-                            string frictionName = interactManager.GetFrictionNameByEnvironmentName(interactItem.itemName);
-                            interactManager.MakeNewStackDummy(frictionName, closestObject.transform.position, 1);
 
-                            Destroy(closestObject);
-                            interacts.Remove(closestObject);
-                            closestObject = lastHighlightObject = null;
-                            FindClosetObject();
+                            StartCoroutine(MiningCoroutine(closestObject));
+
+
 
                             break;
                         case InteractTypeCategory.Friction: // 2-1-3. FRICTION
@@ -369,6 +374,26 @@ public class D3_PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    private IEnumerator MiningCoroutine(GameObject target)
+    {
+        isMining = true;
+        yield return new WaitForSeconds(1f);
+
+        if (target != null)
+        {
+            string frictionName = interactManager.GetFrictionNameByEnvironmentName(target.GetComponent<D3_StackDummy>().GetItem().itemName);
+            interactManager.MakeNewStackDummy(frictionName, closestObject.transform.position, 1);
+
+            Destroy(closestObject);
+            interacts.Remove(closestObject);
+            closestObject = lastHighlightObject = null;
+            FindClosetObject();
+        }
+
+        isMining = false;
     }
 
 
