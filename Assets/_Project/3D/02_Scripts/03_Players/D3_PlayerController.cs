@@ -157,11 +157,31 @@ public class D3_PlayerController : MonoBehaviour
                 {
                     Debug.Log("Case 2-1");
                     InteractTypeCategory category = InteractTypeExtensions.GetCategory(interactType);
+
+                    if (category == InteractTypeCategory.Workbench)
+                    {
+
+                    }
+
                     switch (category)
                     {
                         case InteractTypeCategory.Workbench: // 2-1-1. WORKBENCH
                             Debug.Log("Case 2-1-1");
-                            /* Do Nothing */
+
+                            // WorkBench에 물건이 있다면 꺼내기
+                            //InteractItem targetItem = closestObject.GetComponent<D3_StackDummy>().GetItem();
+                            InteractItem targettItem = closestObject.GetComponent<D3_WorkbenchInput>().item;
+                            int targettAmount = closestObject.GetComponent<D3_StackDummy>().GetItemAmount();
+
+                            playerDummy.GetComponent<D3_StackDummy>().SetInfo(targettItem);
+
+                            int added = playerDummy.GetComponent<D3_StackDummy>().AddToDummy(targettAmount);
+
+                            closestObject.GetComponent<D3_StackDummy>().RemoveFromDummyWorkbench(added);
+
+                            closestObject.GetComponent<D3_WorkbenchInput>().RemoveByByPlayer();
+
+                            // 아이템 제거
                             break;
                         case InteractTypeCategory.Environment: // 2-1-2. ENVIRONMENT
                             Debug.Log("Case 2-1-2");
@@ -314,22 +334,31 @@ public class D3_PlayerController : MonoBehaviour
                                 if (targetItem.interactType == playerItem.interactType) // 같은 물건이라면
                                 {
                                     Debug.Log("Case 2-2-3,4-1");
-                                    int targetAmount = closestObject.GetComponent<D3_StackDummy>().GetItemAmount();
-                                    int added = playerDummy.GetComponent<D3_StackDummy>().AddToDummy(targetAmount);
-                                    closestObject.GetComponent<D3_StackDummy>().RemoveFromDummy(added);
+                                    //int targetAmount = closestObject.GetComponent<D3_StackDummy>().GetItemAmount();
+                                    //int added = playerDummy.GetComponent<D3_StackDummy>().AddToDummy(targetAmount);
+                                    //closestObject.GetComponent<D3_StackDummy>().RemoveFromDummy(added);
 
-                                    if (targetAmount == added)
-                                    {
-                                        interacts.Remove(closestObject);
-                                        closestObject = lastHighlightObject = null;
-                                        FindClosetObject();
-                                    }
+                                    //if (targetAmount == added)
+                                    //{
+                                    //    interacts.Remove(closestObject);
+                                    //    closestObject = lastHighlightObject = null;
+                                    //    FindClosetObject();
+                                    //}
+
+                                    int targetAmount = playerDummy.GetComponent<D3_StackDummy>().GetItemAmount();
+                                    int added = closestObject.GetComponent<D3_StackDummy>().AddToDummy(targetAmount);
+                                    playerDummy.GetComponent<D3_StackDummy>().RemoveFromDummyPlayer(added);
+
+                                    //interacts.Remove(closestObject);
+                                    //closestObject = lastHighlightObject = null;
+                                    RemoveHighlight(closestObject);
+                                    ApplyHighlight(closestObject);
+                                    FindClosetObject();
                                 }
                                 else // 다른 물건이라면
                                 {
                                     Debug.Log("Case 2-2-3,4-2");
                                     /* Do Nothing */
-
                                 }
                                 break;
                             default:

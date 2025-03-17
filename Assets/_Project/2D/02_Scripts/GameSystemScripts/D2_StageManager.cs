@@ -29,6 +29,9 @@ public class D2_StageManager : MonoBehaviour
     {
         Destroy(stageReference);
         stageReference = Instantiate(TutorialMapPrefab[stage], transform.position, Quaternion.identity);
+
+        //D2_GameManager.Instance.InitText();
+
         stagePanel.SetActive(false);
 
         group = 0;
@@ -39,6 +42,9 @@ public class D2_StageManager : MonoBehaviour
     {
         Destroy(stageReference);
         stageReference = Instantiate(BombMapPrefab[stage], transform.position, Quaternion.identity);
+
+        //D2_GameManager.Instance.InitText();
+
         stagePanel.SetActive(false);
 
         group = 1;
@@ -49,6 +55,9 @@ public class D2_StageManager : MonoBehaviour
     {
         Destroy(stageReference);
         stageReference = Instantiate(MagnetMapPrefab[stage], transform.position, Quaternion.identity);
+
+        //D2_GameManager.Instance.InitText();
+
         stagePanel.SetActive(false);
 
         group = 2;

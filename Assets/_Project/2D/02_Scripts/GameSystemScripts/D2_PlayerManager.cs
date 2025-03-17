@@ -8,7 +8,7 @@ public class D2_PlayerManager : MonoBehaviour
     // 플레이어의 정보에 관련된 기능
     public static D2_PlayerManager Instance { get; private set; }
 
-    public GameObject BulletPrefab;
+    public GameObject[] BulletPrefabs = new GameObject[3];
     public bool isItemSelected = false;
     public List<ParticleSystem> itemParticles;
 
@@ -18,10 +18,10 @@ public class D2_PlayerManager : MonoBehaviour
     D2_ItemManager itemManager;
 
 
-    private int selectedItem = -1;
-    private bool isSelectAvailable = false;
-    private bool isBulletDestroyed = false;
-    private bool isPlayAvailable = false;
+    public int selectedItem = -1;
+    //private bool isSelectAvailable = false;
+    //private bool isBulletDestroyed = false;
+    //private bool isPlayAvailable = false;
     private bool isDragAvailable = false;
 
     // Bullet 관련 필드
@@ -62,9 +62,13 @@ public class D2_PlayerManager : MonoBehaviour
     }
 
 
-    public void MakeBullet()
+    public void MakeBullet(int bulletIndex)
     {
-        bulletReference = Instantiate(BulletPrefab, gameObject.transform.position, Quaternion.identity, transform);
+        if (bulletReference != null)
+        {
+            Destroy(bulletReference);
+        }
+        bulletReference = Instantiate(BulletPrefabs[bulletIndex], gameObject.transform.position, Quaternion.identity, transform);
     }
 
     public void FireBullet(Vector2 direction, float power)
@@ -76,11 +80,11 @@ public class D2_PlayerManager : MonoBehaviour
     public void DestroyBullet()
     {
         //Debug.Log("DestroyBullet by PlayerManager called");
-        if (selectedItem != -1)
-        {
+        //if (selectedItem != -1)
+        //{
             itemManager.UseItem(selectedItem);
-            selectedItem = -1;
-        }
+        //    selectedItem = -1;
+        //}
         StartCoroutine(LateDestroyBullet());
 
     }
@@ -91,6 +95,11 @@ public class D2_PlayerManager : MonoBehaviour
         Destroy(bulletReference.gameObject);
         //gameManager.UseBullet();
         //MakeBullet();
+    }
+
+    public void CountDownBullet()
+    {
+        itemManager.UseItem(selectedItem);
     }
 
 

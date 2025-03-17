@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using E_DataTypes;
+using Mono.Cecil.Cil;
 
 public class D3_WorkbenchInput : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class D3_WorkbenchInput : MonoBehaviour
 
     [SerializeField] private int workbenchIndex;
     //[SerializeField] private GameObject stackDummy;
-    private InteractItem item;
+    public InteractItem item;
 
 
     public int InputWorkbench(InteractItem item, int amount)
@@ -42,6 +43,26 @@ public class D3_WorkbenchInput : MonoBehaviour
 
     public void RemoveOneItem()
     {
-        GetComponent<D3_StackDummy>().RemoveFromDummyPlayer(1);
+        GetComponent<D3_StackDummy>().RemoveFromDummyWorkbench(1);
+        if (GetComponent<D3_StackDummy>().GetItemAmount() == 0)
+        {
+            this.item.itemName = "None";
+            this.item.interactType = InteractType.None;
+        }
+    }
+
+    public void RemoveByByPlayer()
+    {
+        int amount = GetComponent<D3_StackDummy>().GetItemAmount();
+        if (amount == 0)
+        {
+            this.item.itemName = "None";
+            this.item.interactType = InteractType.None;
+        }
+    }
+
+    public void RemoveFromOutput()
+    {
+        workbenchOutput.GetComponent<D3_WorkbenchOutput>().SetItemType(item.interactType, workbenchIndex);
     }
 }

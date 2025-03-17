@@ -11,7 +11,8 @@ public class D2_ItemManager : MonoBehaviour
 
     public string[] itemStr =
     {
-        "Bomb", "Magnet", "KnockBack", "Ghost", "Cleaner", "ZeroGravity"
+        //"Bomb", "Magnet", "KnockBack", "Ghost", "Cleaner", "ZeroGravity"
+        "Normal", "Bomb", "Magnet"
     };
 
 
@@ -39,31 +40,31 @@ public class D2_ItemManager : MonoBehaviour
 
     public void UseItem(int itemIndex)
     {
-        gameManager.UseCurrentItems(itemIndex);
+        //gameManager.UseCurrentItems(itemIndex);
         //playerHUDController.RefreshItemDisplay();
         switch(itemIndex)
         {
             case (int)GameItem.Normal:
-
+                gameManager.UseItem(0);
                 break;
             case (int)GameItem.Bomb:
                 gameObject.GetComponent<ItemBomb>().Use();
                 //Debug.Log(playerManager.GetBulletReference().transform.Find("DEP_Bomb Effect"));
                 //playerManager.GetBulletReference().transform.Find("DEP_Bomb Effect").gameObject.SetActive(true);
                 playerManager.GetBulletReference().GetComponent<D2_Bullet>().MakeParticle(0);
-                D2_GameManager.Instance.GetComponent<D2_SoundManager>().PlaySFX(D2_SoundManager.Instance.audios[(int)GameSound.BOMB_SOUND]);
+                //D2_GameManager.Instance.GetComponent<D2_SoundManager>().PlaySFX(D2_SoundManager.Instance.audios[(int)GameSound.BOMB_SOUND]);
                 //playerManager.GetBulletReference().GetComponent<Material>().color = Color.blue;
-                GameObject.Find("Item0").gameObject.GetComponent<Image>().color = Color.white;
-                gameManager.UseItem(0);
+                //GameObject.Find("Item0").gameObject.GetComponent<Image>().color = Color.white;
+                gameManager.UseItem(1);
                 break;
             case (int)GameItem.Magnet:
                 gameObject.GetComponent<ItemMagnet>().Use();
                 //playerManager.GetBulletReference().transform.Find("DEP_Magnetic Effect").gameObject.SetActive(true);
                 playerManager.GetBulletReference().GetComponent<D2_Bullet>().MakeParticle(1);
-                D2_GameManager.Instance.GetComponent<D2_SoundManager>().PlaySFX(D2_SoundManager.Instance.audios[(int)GameSound.MAGNET_SOUND]);
+                //D2_GameManager.Instance.GetComponent<D2_SoundManager>().PlaySFX(D2_SoundManager.Instance.audios[(int)GameSound.MAGNET_SOUND]);
                 //playerManager.GetBulletReference().GetComponent<Material>().color = Color.red;
-                GameObject.Find("Item1").gameObject.GetComponent<Image>().color = Color.white;
-                gameManager.UseItem(1);
+                //GameObject.Find("Item1").gameObject.GetComponent<Image>().color = Color.white;
+                gameManager.UseItem(2);
                 break;
             default:
                 break;

@@ -17,10 +17,10 @@ public class D2_GameManager : MonoBehaviour
 
 
     // 게임 진행상황 변수
-    int currentStage = 0;
-    bool isGameInProgress = true;
-    bool isGameReset = true;
-    bool isStageEnd = false;
+    //int currentStage = 0;
+    //bool isGameInProgress = true;
+    //bool isGameReset = true;
+    //bool isStageEnd = false;
 
     [SerializeField] public int currentCoin; // remainCoin에서 변경
     //[SerializeField] public int currentBullet; // 원래 PlayerController에 있어야 하는 변수 
@@ -51,6 +51,10 @@ public class D2_GameManager : MonoBehaviour
     public Button[] ButtonGorup1 = new Button[4];
     public Button[] ButtonGorup2 = new Button[4];
     public Button[] ButtonGorup3 = new Button[3];
+
+
+    [SerializeField] public TextMeshProUGUI rerollText;
+    public int rerollCoin = 1;
 
 
 
@@ -192,6 +196,11 @@ public class D2_GameManager : MonoBehaviour
         currentItems[itemIndex]--;
     }
 
+    public void UseCurrentItems2()
+    {
+        currentItems[D2_PlayerManager.Instance.selectedItem]--;
+    }
+
 
     public bool HaveItem(int itemIndex)
     {
@@ -213,6 +222,8 @@ public class D2_GameManager : MonoBehaviour
         textItems[0].text = $"Normal \n Bullet \n X {currentItems[0]}";
         textItems[1].text = $"Bomb \n Bullet \n X {currentItems[1]}";
         textItems[2].text = $"Magnet \n Bullet \n X {currentItems[2]}";
+
+        textCoin.text = $"Rest Coin\n X{currentCoin}";
     }
 
     //public void UseBullet()
@@ -256,6 +267,9 @@ public class D2_GameManager : MonoBehaviour
             StageClearPanel.SetActive(true);
             D2_StageManager.Instance.SetClear();
 
+            rerollCoin++;
+            rerollText.text = $"Reroll\nCoin\nX{rerollCoin}";
+
 
             bool flag = true;
             for (int i = 0; i < 3; i++)
@@ -279,7 +293,9 @@ public class D2_GameManager : MonoBehaviour
     public void UseItem(int itemIndex)
     {
         //currentItems[itemIndex]--;
-        textItems[itemIndex].text = $"{D2_ItemManager.Instance.itemStr[itemIndex]} X {currentItems[itemIndex]}";
+        //textItems[itemIndex].text = $"{D2_ItemManager.Instance.itemStr[itemIndex]} X {currentItems[itemIndex]}";
+        //currentItems[itemIndex]--;
+        InitText();
     }
 
 
@@ -290,5 +306,12 @@ public class D2_GameManager : MonoBehaviour
 
 
 
-
+    public void MakeBullet(int index)
+    {
+        if (currentItems[index] > 0)
+        {
+            D2_PlayerManager.Instance.MakeBullet(index);
+            D2_PlayerManager.Instance.SelectItem(index);
+        }
+    }
 }

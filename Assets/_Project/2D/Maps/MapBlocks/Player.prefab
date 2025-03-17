@@ -629,7 +629,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342f79d06e2433942ad59755ac1b76cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 8600695454820131953, guid: e28da6704c258f149960133c14888cfb, type: 3}
+  BulletPrefabs:
+  - {fileID: 8600695454820131953, guid: e28da6704c258f149960133c14888cfb, type: 3}
+  - {fileID: 8600695454820131953, guid: d425567d1ea228f41a06a5fcd2bc3dc8, type: 3}
+  - {fileID: 8600695454820131953, guid: 9f634d4baf5961043973db08315bcfa2, type: 3}
   isItemSelected: 0
   itemParticles: []
   bulletPowerMax: 0.25
@@ -649,9 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7c2d6d96e265741a6e7c9848159bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemButtonImage:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &3282990628379273137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +677,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dbc5e1893291e48b45cc0e260a5686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemStr:
+  - Bomb
+  - Magnet
+  - KnockBack
+  - Ghost
+  - Cleaner
+  - ZeroGravity
 --- !u!114 &1647519106464917932
 MonoBehaviour:
   m_ObjectHideFlags: 0

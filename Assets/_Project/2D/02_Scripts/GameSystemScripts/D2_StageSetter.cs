@@ -31,6 +31,7 @@ public class D2_StageSetter : MonoBehaviour
         //Camera.main.orthographicSize = cameraSize;
 
         gameManager.currentCoin = numCoin;
+        gameManager.InitText();
         //gameManager.currentBullet = numBullet;
         //gameManager.currentItems = items;
         //gameManager.InitText();

@@ -15,7 +15,7 @@ public class D2_Bullet : MonoBehaviour
     public List<GameObject> itemParticles;
 
     bool isStarted = false;
-    bool isDragging = false;
+    //bool isDragging = false;
     Vector2 releasePosition;
 
     public bool isDestroyed = false; // 필요없나?
@@ -96,7 +96,7 @@ public class D2_Bullet : MonoBehaviour
     {
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
-        //lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.startColor = Color.red;
         lineRenderer.endColor = Color.white;
         lineRenderer.positionCount = 2; // 이건 머지

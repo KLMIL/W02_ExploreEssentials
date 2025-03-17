@@ -6,7 +6,7 @@ public class D3_SubmitHole : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Submit Hole enter");
+        //Debug.Log("Submit Hole enter");
         if (collision.gameObject.CompareTag("Player"))
         {
             D3_StackDummy dummy = collision.gameObject.GetComponent<D3_PlayerController>().GetPlayerStackDummy();

@@ -101,6 +101,22 @@ public class D3_StackDummy : MonoBehaviour
         return targetAmount;
     }
 
+    public int RemoveFromDummyWorkbench(int amount)
+    {
+        int targetAmount = currAmount > amount ? amount : currAmount;
+
+        for (int i = 1; i <= targetAmount; i++)
+        {
+            Debug.Log("Destroyed Prefab");
+            Destroy(dummyPrefabs[currAmount - i]);
+        }
+
+        currAmount -= targetAmount;
+
+
+        return targetAmount;
+    }
+
 
     public InteractType GetItemType()
     {

@@ -25,7 +25,7 @@ public class D2_PlayerController : MonoBehaviour
 
     // Bullet 관련 변수
     bool isDragging = false; // 마우스가 누르는 중일때
-    bool isDragAvailable = true;
+    //bool isDragAvailable = true;
 
 
     /* LifeCycle Function */
@@ -121,6 +121,10 @@ public class D2_PlayerController : MonoBehaviour
             {
                 if (!playerManager.GetDragAvailable())
                 {
+                    //playerManager.CountDownBullet();
+                    D2_GameManager.Instance.UseCurrentItems2();
+
+
                     isDragging = false;
                     bulletReference.GetComponent<D2_Bullet>().Fire();
                     //GameManager.Instance.GetComponent<SoundManager>().PlaySFX(SoundManager.Instance.audios[(int)GameSound.BOUNCE_BALL]);

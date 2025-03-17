@@ -37,7 +37,7 @@ public class D2_Coin : MonoBehaviour
 
             // 이식을 위한 임시 삭제
             //D2_GameManager.Instance.GetComponent<D2_SoundManager>().PlaySFX(D2_SoundManager.Instance.audios[(int)GameSound.COIN_SOUND], 0.5f);
-            //D2_GameManager.Instance.CollectCoin(); 
+            D2_GameManager.Instance.CollectCoin();
             Destroy(gameObject);
 
             // 동전 먹는 소리 실행
